@@ -1,0 +1,29 @@
+---
+const logos = ["beobank", "DELHAIZE", "BECI", "proximus", "AXA", "BNP PARIBAS", "VUB"];
+---
+
+<section class="overflow-hidden bg-[#f1f0ec] py-12">
+  <div class="logo-scroll flex w-max gap-24 whitespace-nowrap">
+    {[...logos, ...logos, ...logos, ...logos].map((logo) => (
+      <div class="text-3xl font-bold tracking-[-0.03em] text-neutral-700">
+        {logo}
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .logo-scroll {
+    animation: scrollLogos 22s linear infinite;
+  }
+
+  @keyframes scrollLogos {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(-50%);
+    }
+  }
+</style>

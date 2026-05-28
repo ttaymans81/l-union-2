@@ -1,0 +1,52 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import { projects } from "../../data/projects";
+
+export async function getStaticPaths() {
+
+  return projects.map((project) => ({
+
+    params: {
+      slug: project.title.toLowerCase().replaceAll(" ", "-"),
+    },
+
+    props: {
+      project,
+    },
+
+  }));
+
+}
+
+const { project } = Astro.props;
+---
+
+<MainLayout>
+
+<section class="mx-auto max-w-5xl px-8 py-24">
+
+  <p class="uppercase text-sm tracking-[0.25em] text-neutral-500">
+    {project.category}
+  </p>
+
+  <h1 class="mt-6 text-6xl font-black leading-[0.95]">
+    {project.title}
+  </h1>
+
+  <p class="mt-8 max-w-2xl text-lg leading-relaxed text-neutral-600">
+    {project.description}
+  </p>
+
+  <div class="mt-16 overflow-hidden bg-neutral-300">
+
+    <img
+      src={project.image}
+      alt={project.title}
+      class="w-full object-cover"
+    />
+
+  </div>
+
+</section>
+
+</MainLayout>

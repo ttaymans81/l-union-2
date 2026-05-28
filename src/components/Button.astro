@@ -1,0 +1,25 @@
+---
+const {
+  href = "#",
+  variant = "primary",
+  label = "Button",
+} = Astro.props;
+---
+
+<a
+  href={href}
+  class={`
+    inline-flex items-center gap-3 px-8 py-4 font-bold transition duration-300
+    ${
+      variant === "primary"
+        ? "bg-yellow-400 text-black hover:bg-yellow-300"
+        : "border border-black text-black hover:bg-black hover:text-white"
+    }
+  `}
+>
+
+  {label}
+
+  <span>&rarr;</span>
+
+</a>

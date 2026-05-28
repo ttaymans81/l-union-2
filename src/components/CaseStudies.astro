@@ -24,7 +24,7 @@ import { projects } from "../data/projects";
     {projects.map((project) => (
 
       <a
-  href={`/case-studies/${project.title.toLowerCase().replaceAll(" ", "-")}`}
+  href={`/case-studies/${project.slug}`}
   class="group block transition duration-300 hover:-translate-y-1"
 >
 

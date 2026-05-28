@@ -7,7 +7,7 @@ export async function getStaticPaths() {
   return projects.map((project) => ({
 
     params: {
-      slug: project.title.toLowerCase().replaceAll(" ", "-"),
+      slug: project.slug,
     },
 
     props: {

@@ -1,18 +1,68 @@
----
-import Button from "./Button.astro";
----
+<footer class="bg-[#111] text-white">
 
-<footer class="bg-[#111] text-white mt-20">
-  <div class="max-w-7xl mx-auto px-8 py-20">
-    <h2 class="text-5xl font-bold">
-      Ready to create impact?
-    </h2>
+  <div class="mx-auto max-w-7xl px-8 py-20">
 
-    <div class="mt-10">
-  <Button
-    label="Contact us"
-    href="/contact"
-  />
-</div>
+    <div class="flex flex-col gap-12 lg:flex-row lg:items-end lg:justify-between">
+
+      <div>
+
+        <h2 class="max-w-xl text-5xl font-black leading-[0.95] tracking-[-0.04em]">
+          Let's create something meaningful together.
+        </h2>
+
+      </div>
+
+      <a
+  href="/contact"
+  class="inline-flex bg-[#f2c500] px-10 py-5 font-bold text-black transition hover:translate-y-[-2px]"
+>
+  Contact us
+  <span class="ml-2">&rarr;</span>
+</a>
+
+    </div>
+
+    <div class="mt-16 border-t border-white/10 pt-10">
+
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-5">
+
+        <div>
+          <img
+            src="/logo-white.svg"
+            alt="L'Union"
+            class="w-36"
+          />
+        </div>
+
+        <div>
+          <p class="text-sm text-white/60">Email</p>
+          <p class="mt-2">hello@l-union.be</p>
+        </div>
+
+        <div>
+          <p class="text-sm text-white/60">Phone</p>
+          <p class="mt-2">+32 479 99 84 93</p>
+        </div>
+
+        <div>
+          <p class="text-sm text-white/60">Location</p>
+          <p class="mt-2">Brussels, Belgium</p>
+        </div>
+
+        <div>
+          <p class="text-sm text-white/60">Follow</p>
+
+          <div class="mt-2 flex gap-4">
+            <a href="#">LinkedIn</a>
+            <a href="#">Instagram</a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
   </div>
+
 </footer>

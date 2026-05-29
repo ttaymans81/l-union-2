@@ -1,52 +1,97 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
-import { projects } from "../../data/projects";
+import { sanityClient } from "../../lib/sanity";
 
 export async function getStaticPaths() {
+  const projects = await sanityClient.fetch(`
+    *[_type == "caseStudy" && defined(slug.current)]{
+      "slug": slug.current
+    }
+  `);
 
   return projects.map((project) => ({
-
     params: {
       slug: project.slug,
     },
-
-    props: {
-      project,
-    },
-
   }));
-
 }
 
-const { project } = Astro.props;
+const { slug } = Astro.params;
+
+const project = await sanityClient.fetch(
+  `
+    *[_type == "caseStudy" && slug.current == $slug][0]{
+      title,
+      "slug": slug.current,
+      category,
+      description,
+      "imageUrl": image.asset->url,
+      challenge,
+      solution,
+      results
+    }
+  `,
+  { slug }
+);
 ---
 
 <MainLayout>
+  <section class="mx-auto max-w-5xl px-8 py-24">
+    <p class="uppercase text-sm tracking-[0.25em] text-neutral-500">
+      {project.category}
+    </p>
 
-<section class="mx-auto max-w-5xl px-8 py-24">
+    <h1 class="mt-6 text-6xl font-black leading-[0.95]">
+      {project.title}
+    </h1>
 
-  <p class="uppercase text-sm tracking-[0.25em] text-neutral-500">
-    {project.category}
-  </p>
+    <p class="mt-8 max-w-2xl text-lg leading-relaxed text-neutral-600">
+      {project.description}
+    </p>
 
-  <h1 class="mt-6 text-6xl font-black leading-[0.95]">
-    {project.title}
-  </h1>
+    {project.imageUrl && (
+      <div class="mt-16 overflow-hidden bg-neutral-300">
+        <img
+          src={project.imageUrl}
+          alt={project.title}
+          class="w-full object-cover"
+        />
+      </div>
+    )}
+  </section>
 
-  <p class="mt-8 max-w-2xl text-lg leading-relaxed text-neutral-600">
-    {project.description}
-  </p>
+  <section class="mx-auto max-w-5xl px-8 pb-24">
+    <div class="grid gap-10 md:grid-cols-3">
+      <div>
+        <h3 class="text-xl font-black">Challenge</h3>
+        <p class="mt-4 leading-relaxed text-neutral-600">
+          {project.challenge}
+        </p>
+      </div>
 
-  <div class="mt-16 overflow-hidden bg-neutral-300">
+      <div>
+        <h3 class="text-xl font-black">Solution</h3>
+        <p class="mt-4 leading-relaxed text-neutral-600">
+          {project.solution}
+        </p>
+      </div>
 
-    <img
-      src={project.image}
-      alt={project.title}
-      class="w-full object-cover"
-    />
+      <div>
+        <h3 class="text-xl font-black">Results</h3>
+        <p class="mt-4 leading-relaxed text-neutral-600">
+          {project.results}
+        </p>
+      </div>
+    </div>
+  </section>
 
-  </div>
-
-</section>
-
+  <section class="mx-auto max-w-5xl px-8 pb-20">
+    <a
+      href="/case-studies"
+      class="inline-flex items-center gap-3 font-semibold text-neutral-700 transition hover:text-black"
+    >
+      <span class="text-yellow-500">&larr;</span>
+      <span>Back to Case Studies</span>
+    </a>
+  </section>
 </MainLayout>

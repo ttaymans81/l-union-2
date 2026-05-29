@@ -1,23 +1,54 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
+import { sanityClient } from "../lib/sanity";
+
+const team = await sanityClient.fetch(`
+  *[_type == "teamMember"] | order(order asc){
+    name,
+    role,
+    "imageUrl": photo.asset->url
+  }
+`);
 ---
 
 <MainLayout>
+  <section class="mx-auto max-w-7xl px-8 py-24">
+    <p class="text-sm font-semibold uppercase tracking-[0.25em] text-neutral-500">
+      Team
+    </p>
 
-<section class="mx-auto max-w-7xl px-8 py-24">
+    <h1 class="mt-6 max-w-4xl text-6xl font-black leading-[0.95] tracking-[-0.05em]">
+      A network of specialists.
+    </h1>
 
-  <p class="uppercase text-sm tracking-[0.25em] text-neutral-500">
-    Team
-  </p>
+    <p class="mt-8 max-w-2xl text-lg leading-relaxed text-neutral-600">
+      We assemble the right expertise around every challenge.
+    </p>
+  </section>
 
-  <h1 class="mt-6 max-w-4xl text-6xl font-black leading-[0.95]">
-    Team
-  </h1>
+  <section class="mx-auto max-w-7xl px-8 pb-24">
+    <div class="grid gap-x-8 gap-y-14 md:grid-cols-2 lg:grid-cols-4">
 
-  <p class="mt-8 max-w-2xl text-lg leading-relaxed text-neutral-600">
-    The people behind L'Union.
-  </p>
+      {team.map((person) => (
+        <div class="text-center">
 
-</section>
+          <img
+            src={person.imageUrl}
+            alt={person.name}
+            class="mx-auto aspect-square w-48 object-cover"
+          />
 
+          <h2 class="mt-5 text-2xl font-black">
+            {person.name}
+          </h2>
+
+          <p class="mt-2 text-neutral-500">
+            {person.role}
+          </p>
+
+        </div>
+      ))}
+
+    </div>
+  </section>
 </MainLayout>

@@ -1,29 +1,58 @@
 ---
-const logos = ["beobank", "DELHAIZE", "BECI", "proximus", "AXA", "BNP PARIBAS", "VUB"];
+const logos = [
+  "/images/logos/luminus.svg",
+  "/images/logos/unilever.svg",
+  "/images/logos/ulb.svg",
+  "/images/logos/sika.svg",
+  "/images/logos/msf.svg",
+  "/images/logos/hub.svg",
+];
 ---
 
-<section class="overflow-hidden bg-[#f1f0ec] py-12">
-  <div class="logo-scroll flex w-max gap-24 whitespace-nowrap">
-    {[...logos, ...logos, ...logos, ...logos].map((logo) => (
-      <div class="text-3xl font-bold tracking-[-0.03em] text-neutral-700">
-        {logo}
+<section class="overflow-hidden bg-[#f1f0ec] py-16">
+
+  <div class="logo-scroll flex w-max items-center gap-32">
+
+    {[...logos, ...logos].map((logo) => (
+
+      <div class="flex h-14 items-center">
+
+        <img
+  src={logo}
+  alt=""
+  class={`w-auto opacity-60 grayscale transition duration-300 hover:opacity-100 ${
+    logo.includes("unilever")
+      ? "h-20"
+      : logo.includes("hub")
+      ? "h-16"
+      : "h-12"
+  }`}
+/>
+
       </div>
+
     ))}
+
   </div>
+
 </section>
 
 <style>
-  .logo-scroll {
-    animation: scrollLogos 22s linear infinite;
-  }
 
-  @keyframes scrollLogos {
-    from {
-      transform: translateX(0);
-    }
+.logo-scroll {
+animation: scrollLogos 30s linear infinite;
+}
 
-    to {
-      transform: translateX(-50%);
-    }
-  }
+@keyframes scrollLogos {
+
+from {
+transform: translateX(0);
+}
+
+to {
+transform: translateX(-50%);
+}
+
+}
+
 </style>

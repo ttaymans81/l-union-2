@@ -23,9 +23,32 @@ import MainLayout from "../layouts/MainLayout.astro";
         <h2 class="text-3xl font-black">Get in touch</h2>
 
         <div class="mt-8 space-y-6 text-lg">
-          <p><span class="text-neutral-500">Email</span><br />info@l-union.be</p>
-          <p><span class="text-neutral-500">Phone</span><br />+32 2 880 66 77</p>
-          <p><span class="text-neutral-500">Location</span><br />Brussels, Belgium</p>
+          <p>
+    <span class="text-neutral-500">Email</span><br />
+
+    <a
+      href="mailto:hello@l-union.be"
+      class="transition hover:text-[#f2c500]"
+    >
+      hello@l-union.be
+    </a>
+  </p>
+
+  <p>
+    <span class="text-neutral-500">Phone</span><br />
+
+    <a
+      href="tel:+32479998493"
+      class="transition hover:text-[#f2c500]"
+    >
+      +32 479 99 84 93
+    </a>
+  </p>
+
+  <p>
+    <span class="text-neutral-500">Location</span><br />
+    Brussels, Belgium
+  </p>
         </div>
       </div>
 
@@ -33,11 +56,11 @@ import MainLayout from "../layouts/MainLayout.astro";
         <h2 class="text-3xl font-black">Book a meeting</h2>
 
         <p class="mt-6 leading-relaxed text-white/70">
-          Schedule a conversation with L'Union to explore how we can help.
+          Schedule a conversation with L'UNION to explore how we can help.
         </p>
 
         <a
-          href="#"
+          href="https://calendly.com/lunion/introduction-call"
           class="mt-10 inline-block bg-[#f2c500] px-10 py-5 font-bold text-black"
         >
           Book a meeting <span class="ml-2">&rarr;</span>

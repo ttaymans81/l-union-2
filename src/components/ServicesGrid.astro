@@ -1,6 +1,8 @@
 ---
 import { sanityClient } from "../lib/sanity";
 
+const { showLink = true } = Astro.props;
+
 const services = await sanityClient.fetch(`
   *[_type == "service"] | order(order asc){
     title,
@@ -11,9 +13,7 @@ const services = await sanityClient.fetch(`
 
 <section class="bg-[#f1f0ec]">
   <div class="mx-auto grid max-w-7xl gap-12 px-8 py-20 lg:grid-cols-[0.28fr_0.72fr]">
-
     <div>
-
       <p class="text-xs font-semibold uppercase tracking-[0.25em] text-neutral-500">
         What we do
       </p>
@@ -26,25 +26,23 @@ const services = await sanityClient.fetch(`
         We combine strategy, creativity and technology to deliver meaningful results.
       </p>
 
-      <a
-        href="/services"
-        class="mt-6 inline-block font-semibold"
-      >
-        Discover our services
-        <span class="text-yellow-500">&rarr;</span>
-      </a>
-
+      {showLink && (
+        <a
+          href="/services"
+          class="mt-6 inline-block font-semibold"
+        >
+          Discover our services
+          <span class="text-yellow-500">&rarr;</span>
+        </a>
+      )}
     </div>
 
     <div class="grid grid-cols-2 border-l border-t border-neutral-300 md:grid-cols-3 lg:grid-cols-5">
-
       {services.map((service) => (
-
         <a
           href="/services"
           class="flex min-h-36 flex-col items-center justify-center border-b border-r border-neutral-300 p-6 text-center transition hover:bg-white"
         >
-
           <img
             src={`/images/services/${service.icon}.svg`}
             alt=""
@@ -54,12 +52,8 @@ const services = await sanityClient.fetch(`
           <span class="max-w-[120px] text-sm font-semibold leading-tight">
             {service.title}
           </span>
-
         </a>
-
       ))}
-
     </div>
-
   </div>
 </section>

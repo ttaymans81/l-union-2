@@ -1,3 +1,8 @@
+---
+const pathname = Astro.url.pathname;
+const isContactPage = pathname === "/contact";
+---
+
 <footer class="bg-[#111] text-white">
 
   <div class="mx-auto max-w-7xl px-8 py-20">
@@ -12,13 +17,17 @@
 
       </div>
 
-      <a
-  href="/contact"
-  class="inline-flex bg-[#f2c500] px-10 py-5 font-bold text-black transition hover:translate-y-[-2px]"
->
-  Contact us
-  <span class="ml-2">&rarr;</span>
-</a>
+      {
+  !isContactPage && (
+    <a
+      href="/contact"
+      class="inline-flex bg-[#f2c500] px-10 py-5 font-bold text-black transition hover:translate-y-[-2px]"
+    >
+      Contact us
+      <span class="ml-2">&rarr;</span>
+    </a>
+  )
+}
 
     </div>
 
@@ -35,27 +44,70 @@
         </div>
 
         <div>
-          <p class="text-sm text-white/60">Email</p>
-          <p class="mt-2">hello@l-union.be</p>
-        </div>
+  <p class="text-sm text-white/60">Email</p>
 
-        <div>
-          <p class="text-sm text-white/60">Phone</p>
-          <p class="mt-2">+32 479 99 84 93</p>
-        </div>
+  <a
+    href="mailto:hello@l-union.be"
+    class="mt-2 inline-block transition hover:text-[#f2c500]"
+  >
+    hello@l-union.be
+  </a>
+</div>
 
-        <div>
-          <p class="text-sm text-white/60">Location</p>
-          <p class="mt-2">Brussels, Belgium</p>
-        </div>
+<div>
+  <p class="text-sm text-white/60">Phone</p>
 
-        <div>
-          <p class="text-sm text-white/60">Follow</p>
+  <a
+    href="tel:+32479998493"
+    class="mt-2 inline-block transition hover:text-[#f2c500]"
+  >
+    +32 479 99 84 93
+  </a>
+</div>
 
-          <div class="mt-2 flex gap-4">
-            <a href="#">LinkedIn</a>
-            <a href="#">Instagram</a>
-          </div>
+<div>
+  <p class="text-sm text-white/60">Follow</p>
+
+  <div class="mt-2 flex flex-col gap-2">
+
+    <a
+      href="https://www.linkedin.com/company/l'union/"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="transition hover:text-[#f2c500]"
+    >
+      LinkedIn
+    </a>
+
+    <a
+      href="https://www.instagram.com/lunionfrombxl/"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="transition hover:text-[#f2c500]"
+    >
+      Instagram
+    </a>
+
+    <a
+      href="https://vimeo.com/lunion"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="transition hover:text-[#f2c500]"
+    >
+      Vimeo
+    </a>
+
+    <a
+      href="https://l-union.wetransfer.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="transition hover:text-[#f2c500]"
+    >
+      WeTransfer
+    </a>
+
+  </div>
+</div>
 
         </div>
 

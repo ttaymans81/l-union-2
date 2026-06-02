@@ -40,20 +40,38 @@ export const caseStudyType = defineType({
     }),
 
     defineField({
+      name: 'columnOneTitle',
+      title: 'Column 1 Title',
+      type: 'string',
+    }),
+
+    defineField({
+      name: 'columnTwoTitle',
+      title: 'Column 2 Title',
+      type: 'string',
+    }),
+
+    defineField({
+      name: 'columnThreeTitle',
+      title: 'Column 3 Title',
+      type: 'string',
+    }),
+
+    defineField({
       name: 'challenge',
-      title: 'Challenge',
+      title: 'Column 1 Content',
       type: 'text',
     }),
 
     defineField({
       name: 'solution',
-      title: 'Solution',
+      title: 'Column 2 Content',
       type: 'text',
     }),
 
     defineField({
       name: 'results',
-      title: 'Results',
+      title: 'Column 3 Content',
       type: 'text',
     }),
   ],

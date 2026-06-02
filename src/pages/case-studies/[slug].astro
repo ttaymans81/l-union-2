@@ -26,6 +26,9 @@ const project = await sanityClient.fetch(
       category,
       description,
       "imageUrl": image.asset->url,
+      columnOneTitle,
+      columnTwoTitle,
+      columnThreeTitle,
       challenge,
       solution,
       results
@@ -63,21 +66,30 @@ const project = await sanityClient.fetch(
   <section class="mx-auto max-w-5xl px-8 pb-24">
     <div class="grid gap-10 md:grid-cols-3">
       <div>
-        <h3 class="text-xl font-black">Challenge</h3>
+        <h3 class="text-xl font-black">
+          {project.columnOneTitle || "Challenge"}
+        </h3>
+
         <p class="mt-4 leading-relaxed text-neutral-600">
           {project.challenge}
         </p>
       </div>
 
       <div>
-        <h3 class="text-xl font-black">Solution</h3>
+        <h3 class="text-xl font-black">
+          {project.columnTwoTitle || "Solution"}
+        </h3>
+
         <p class="mt-4 leading-relaxed text-neutral-600">
           {project.solution}
         </p>
       </div>
 
       <div>
-        <h3 class="text-xl font-black">Results</h3>
+        <h3 class="text-xl font-black">
+          {project.columnThreeTitle || "Results"}
+        </h3>
+
         <p class="mt-4 leading-relaxed text-neutral-600">
           {project.results}
         </p>

@@ -1,16 +1,25 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
+import { sanityClient } from "../lib/sanity";
 
 import Hero from "../components/Hero.astro";
 import LogoCarousel from "../components/LogoCarousel.astro";
 import CaseStudies from "../components/CaseStudies.astro";
 import ServicesGrid from "../components/ServicesGrid.astro";
 import Approach from "../components/Approach.astro";
+
+const homepage = await sanityClient.fetch(`
+  *[_type == "homepage"][0]{
+    heroEyebrow,
+    heroTitle,
+    heroSubtitle,
+    "heroImageUrl": heroImage.asset->url
+  }
+`);
 ---
 
 <MainLayout>
-
-  <Hero />
+  <Hero homepage={homepage} />
 
   <LogoCarousel />
 
@@ -19,5 +28,4 @@ import Approach from "../components/Approach.astro";
   <ServicesGrid />
 
   <Approach />
-
 </MainLayout>

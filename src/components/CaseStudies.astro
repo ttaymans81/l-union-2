@@ -1,10 +1,27 @@
 ---
-import { projects } from "../data/projects";
+import { sanityClient } from "../lib/sanity";
+
+const homepage = await sanityClient.fetch(`
+  *[_type == "homepage"][0]{
+    featuredProjects[]->{
+      title,
+      "slug": slug.current,
+      category,
+      description,
+      "imageUrl": image.asset->url
+    }
+  }
+`);
+
+const projects = homepage?.featuredProjects || [];
 ---
 
 <section class="mx-auto max-w-7xl px-8 py-28">
+
   <div class="mb-14 flex items-end justify-between">
+
     <div>
+
       <p class="text-sm font-semibold uppercase tracking-[0.25em] text-neutral-500">
         Selected Work
       </p>
@@ -12,6 +29,7 @@ import { projects } from "../data/projects";
       <h2 class="mt-4 text-5xl font-black tracking-[-0.04em]">
         Case Studies
       </h2>
+
     </div>
 
     <a
@@ -20,17 +38,30 @@ import { projects } from "../data/projects";
     >
       See all &rarr;
     </a>
+
   </div>
 
   <div class="grid gap-16 md:grid-cols-2 lg:grid-cols-3">
+
     {projects.map((project) => (
-      <a href={`/case-studies/${project.slug}`} class="group block">
+
+      <a
+        href={`/case-studies/${project.slug}`}
+        class="group block"
+      >
+
         <div class="overflow-hidden bg-neutral-200">
-          <img
-            src={project.image}
-            alt={project.title}
-            class="aspect-[1.05] w-full object-cover transition duration-700 group-hover:scale-[1.03]"
-          />
+
+          {project.imageUrl && (
+
+            <img
+              src={project.imageUrl}
+              alt={project.title}
+              class="aspect-[1.05] w-full object-cover transition duration-700 group-hover:scale-[1.03]"
+            />
+
+          )}
+
         </div>
 
         <p class="mt-5 text-xs font-semibold uppercase tracking-[0.22em] text-neutral-400">
@@ -44,7 +75,11 @@ import { projects } from "../data/projects";
         <p class="mt-4 leading-relaxed text-neutral-600">
           {project.description}
         </p>
+
       </a>
+
     ))}
+
   </div>
+
 </section>

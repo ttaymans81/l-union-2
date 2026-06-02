@@ -1,6 +1,6 @@
 ---
 const pathname = Astro.url.pathname;
-const isContactPage = pathname === "/contact";
+const isContactPage = pathname.startsWith("/contact");
 ---
 
 <footer class="bg-[#111] text-white">

@@ -25,7 +25,7 @@ const isActive = (href) => {
       />
     </a>
 
-    <nav class="hidden gap-10 text-[18px] font-medium md:flex">
+    <nav class="hidden lg:flex gap-10 text-[18px] font-medium">
       {links.map((link) => (
         <a
           href={link.href}
@@ -36,7 +36,7 @@ const isActive = (href) => {
       ))}
     </nav>
 
-    <details class="relative md:hidden">
+    <details class="relative block lg:hidden">
       <<summary class="flex cursor-pointer list-none items-center">
   <span class="flex flex-col gap-1">
     <span class="block h-[2px] w-7 bg-black"></span>

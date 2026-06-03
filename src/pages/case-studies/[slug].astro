@@ -37,17 +37,24 @@ const project = await sanityClient.fetch(
   `,
   { slug }
 );
+
+const vimeoEmbedUrl = project?.vimeoUrl
+  ? project.vimeoUrl.replace(
+      "https://vimeo.com/",
+      "https://player.vimeo.com/video/"
+    )
+  : null;
 ---
 
 <MainLayout>
   <section class="mx-auto max-w-7xl px-8 pt-6 pb-24 md:pt-8">
-    <p class="uppercase text-sm tracking-[0.25em] text-neutral-500">
+    <p class="text-sm uppercase tracking-[0.25em] text-neutral-500">
       {project.category}
     </p>
 
     <h1 class="mt-6 text-5xl font-black leading-[0.95] tracking-[-0.04em] md:text-6xl">
-  {project.title}
-</h1>
+      {project.title}
+    </h1>
 
     <p class="mt-8 max-w-2xl text-lg leading-relaxed text-neutral-600">
       {project.description}
@@ -96,6 +103,20 @@ const project = await sanityClient.fetch(
         </p>
       </div>
     </div>
+
+    {vimeoEmbedUrl && (
+      <div class="mt-20 overflow-hidden">
+        <div class="aspect-video">
+          <iframe
+            src={vimeoEmbedUrl}
+            class="h-full w-full"
+            frameborder="0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    )}
   </section>
 
   <section class="mx-auto max-w-5xl px-8 pb-20">

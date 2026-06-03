@@ -74,5 +74,12 @@ export const caseStudyType = defineType({
       title: 'Column 3 Content',
       type: 'text',
     }),
+
+    defineField({
+  name: 'vimeoUrl',
+  title: 'Vimeo URL',
+  type: 'url',
+}),
+
   ],
 })

@@ -3,17 +3,20 @@ import { sanityClient } from "../lib/sanity";
 
 const homepage = await sanityClient.fetch(`
   *[_type == "homepage"][0]{
-    featuredProjects[]->{
-      title,
-      "slug": slug.current,
-      category,
-      description,
-      "imageUrl": image.asset->url
+    featuredProjects[]{
+      _key,
+      "project": @->{
+        title,
+        "slug": slug.current,
+        category,
+        description,
+        "imageUrl": image.asset->url
+      }
     }
   }
 `);
 
-const projects = homepage?.featuredProjects || [];
+const projects = homepage?.featuredProjects?.map((item) => item.project) || [];
 ---
 
 <section class="mx-auto max-w-7xl px-8 py-28">

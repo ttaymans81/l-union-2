@@ -8,7 +8,25 @@ import Footer from "../components/Footer.astro";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>L'Union</title>
+
+    <title>L'Union | Strategy, Creativity, Impact</title>
+
+    <meta
+      name="description"
+      content="L'Union is a Brussels-based communication agency combining strategy, creativity and impact to help organizations connect with the audiences that matter."
+    />
+
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-GNZQSKP5ZX"
+    ></script>
+
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-GNZQSKP5ZX');
+    </script>
   </head>
 
   <body class="bg-[#f7f6f2] text-[#111]">

@@ -81,5 +81,14 @@ export const caseStudyType = defineType({
   type: 'url',
 }),
 
+defineField({
+  name: "additionalImage",
+  title: "Additional Image",
+  type: "image",
+  options: {
+    hotspot: true,
+  },
+}),
+
   ],
 })
